@@ -37,4 +37,7 @@ return [
         ],
     ],
 
+    'jwt_user_auth' => [
+        'url' => env('JWT_USER_AUTH_URL'),
+    ],
 ];
