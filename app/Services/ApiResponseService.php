@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\JsonResponse;
 use InvalidArgumentException;
 use JsonSerializable;
@@ -11,18 +12,26 @@ use JsonSerializable;
 final readonly class ApiResponseService
 {
     /**
-     * @param JsonSerializable|array<string, string> $data
+     * @template TValue
+     *
+     * @param  JsonSerializable|Arrayable<int, TValue>|array<int, TValue>  $data
      */
-    public function success(JsonSerializable|array $data, int $code = 200): JsonResponse
+    public function success(JsonSerializable|Arrayable|array $data, int $code = 200): JsonResponse
     {
-        if ($code > 299 || $code < 200) {
+        if ($code < 200 || $code > 299) {
             throw new InvalidArgumentException('Invalid status code');
         }
 
-        return response()->json(data: [
+        if ($data instanceof Arrayable) {
+            $data = $data->toArray();
+        } elseif ($data instanceof JsonSerializable) {
+            $data = $data->jsonSerialize();
+        }
+
+        return response()->json([
             'success' => true,
             'data' => $data,
-        ], status: $code);
+        ], $code);
     }
 
     /**

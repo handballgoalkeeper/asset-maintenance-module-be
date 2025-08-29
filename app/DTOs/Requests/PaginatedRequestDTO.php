@@ -1,8 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\DTOs\Requests;
 
-class PaginatedRequestDTO
-{
-
-}
+final class PaginatedRequestDTO {}

@@ -4,16 +4,18 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\v1;
 
-use App\DTOs\Responses\PaginatedResponseDTO;
+use App\DTOs\Internal\VendorDTO;
 use App\Facades\ApiResponseFacade;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\PaginationRequest;
-use App\Models\Vendor;
 use App\Services\Interfaces\VendorServiceInterface;
 use Illuminate\Http\JsonResponse;
 
 final readonly class VendorController extends Controller
 {
+    /**
+     * @param  VendorServiceInterface<VendorDTO>  $vendorService
+     */
     public function __construct(
         private VendorServiceInterface $vendorService
     ) {}

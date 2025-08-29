@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mappers;
 
 use App\DTOs\Internal\VendorDTO;
@@ -8,7 +10,8 @@ use Illuminate\Database\Eloquent\Collection;
 
 final readonly class VendorMapper
 {
-    public function modelToDTO(Vendor $vendor): VendorDTO {
+    public function modelToDTO(Vendor $vendor): VendorDTO
+    {
         return new VendorDTO(
             id: $vendor->id,
             name: $vendor->name,
@@ -24,7 +27,7 @@ final readonly class VendorMapper
     }
 
     /**
-     * @param Collection<Vendor> $vendors
+     * @param  Collection<int, Vendor>  $vendors
      * @return array<int, VendorDTO>
      */
     public function modelsToDTOs(Collection $vendors): array
@@ -33,6 +36,7 @@ final readonly class VendorMapper
         foreach ($vendors as $vendor) {
             $output[] = $this->modelToDTO(vendor: $vendor);
         }
+
         return $output;
     }
 }

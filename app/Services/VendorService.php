@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
+use App\DTOs\Internal\VendorDTO;
 use App\DTOs\Responses\PaginatedResponseDTO;
 use App\Mappers\VendorMapper;
 use App\Models\Vendor;
@@ -9,27 +12,29 @@ use App\Repositories\Interfaces\VendorRepositoryInterface;
 use App\Services\Interfaces\VendorServiceInterface;
 
 /**
- * @implements VendorServiceInterface<Vendor>
+ * @implements VendorServiceInterface<VendorDTO>
  */
 final readonly class VendorService implements VendorServiceInterface
 {
+    /**
+     * @param  VendorRepositoryInterface<Vendor>  $vendorRepository
+     */
     public function __construct(
         private VendorRepositoryInterface $vendorRepository,
         private VendorMapper $vendorMapper
     ) {}
 
     /**
-     * @param array<string, string> $filters
-     * @return PaginatedResponseDTO<Vendor>
+     * @param  array<string, string>  $filters
+     * @return PaginatedResponseDTO<VendorDTO>
      */
-    function getPaginated(
+    public function getPaginated(
         int $page,
         int $perPage,
         string $sortBy,
         string $sortDirection,
         array $filters
-    ): PaginatedResponseDTO
-    {
+    ): PaginatedResponseDTO {
         $paginatedVendorsData = $this->vendorRepository->getPaginated(
             page: $page,
             perPage: $perPage,

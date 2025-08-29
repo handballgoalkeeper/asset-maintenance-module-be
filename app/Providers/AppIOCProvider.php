@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use App\Mappers\VendorMapper;
@@ -10,20 +12,20 @@ use App\Services\VendorService;
 use Illuminate\Container\Container;
 use Illuminate\Support\ServiceProvider;
 
-class AppIOCProvider extends ServiceProvider
+final class AppIOCProvider extends ServiceProvider
 {
     public function register(): void
     {
         $this->app->singleton(
             abstract: VendorRepositoryInterface::class,
-            concrete: fn() => new VendorRepository()
+            concrete: fn (): VendorRepository => new VendorRepository()
         );
 
-        $this->app->bind(abstract: VendorMapper::class, concrete: fn() => new VendorMapper());
+        $this->app->bind(abstract: VendorMapper::class, concrete: fn (): VendorMapper => new VendorMapper());
 
         $this->app->singleton(
             abstract: VendorServiceInterface::class,
-            concrete: fn(Container $app) => new VendorService(
+            concrete: fn (Container $app): VendorService => new VendorService(
                 vendorRepository: $app->make(abstract: VendorRepositoryInterface::class),
                 vendorMapper: $app->make(abstract: VendorMapper::class)
             )

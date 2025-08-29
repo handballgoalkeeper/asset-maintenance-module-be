@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\DTOs\Responses;
 
-use Illuminate\Contracts\Support\Arrayable;
+use JsonSerializable;
 
 /**
  * @template T
  */
-final readonly class PaginatedResponseDTO implements \JsonSerializable
+final readonly class PaginatedResponseDTO implements JsonSerializable
 {
     /**
-     * @param array<int, T> $items
+     * @param  array<int, T>  $items
      */
     public function __construct(
         private array $items,
@@ -21,6 +23,9 @@ final readonly class PaginatedResponseDTO implements \JsonSerializable
         private bool $isLastPage
     ) {}
 
+    /**
+     * @return array<string, mixed>
+     */
     public function jsonSerialize(): array
     {
         return [

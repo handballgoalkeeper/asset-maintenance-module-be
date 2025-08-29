@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repositories;
 
 use App\Models\Vendor;
@@ -9,16 +11,16 @@ use Illuminate\Database\Eloquent\Collection;
 /**
  * @implements VendorRepositoryInterface<Vendor>
  */
-class VendorRepository implements VendorRepositoryInterface
+final class VendorRepository implements VendorRepositoryInterface
 {
     /**
-     * @param array<string, string> $filters
+     * @param  array<string, string>  $filters
      * @return array{
-     *     items: Collection<Vendor>,
+     *     items: Collection<int, Vendor>,
      *     totalCount: int
      * }
      */
-    function getPaginated(int $page, int $perPage, string $sortBy, string $sortDirection, array $filters): array
+    public function getPaginated(int $page, int $perPage, string $sortBy, string $sortDirection, array $filters): array
     {
         $offset = ($page - 1) * $perPage;
 
@@ -27,7 +29,7 @@ class VendorRepository implements VendorRepositoryInterface
             ->select([
                 'id', 'name', 'email', 'phone',
                 'address', 'website', 'contact_person_name',
-                'contact_person_email', 'contact_person_phone', 'is_active'
+                'contact_person_email', 'contact_person_phone', 'is_active',
             ]);
 
         $totalCount = (clone $baseQuery)->count();

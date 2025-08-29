@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\DTOs\Internal;
 
 use JsonSerializable;
@@ -20,7 +22,7 @@ final readonly class VendorDTO implements JsonSerializable
     ) {}
 
     /**
-     * @return array<string, string>
+     * @return array<string, mixed>
      */
     public function jsonSerialize(): array
     {
@@ -34,7 +36,7 @@ final readonly class VendorDTO implements JsonSerializable
             'contact_person_name' => $this->contactPersonName,
             'contact_person_email' => $this->contactPersonEmail,
             'contact_person_phone' => $this->contactPersonPhone,
-            'is_active' => $this->isActive
+            'is_active' => $this->isActive,
         ];
     }
 }

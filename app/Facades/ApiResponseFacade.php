@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace App\Facades;
 
 use App\Services\ApiResponseService;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Facades\Facade;
+use JsonSerializable;
 
 /**
- * @method static JsonResponse success(array $data): JsonResponse
- * @method static JsonResponse error(array|string $errors, int $code): JsonResponse
+ * @method static \Illuminate\Http\JsonResponse success(JsonSerializable|Arrayable<string, string>|array<string, string> $data, int $code = 200)
+ * @method static \Illuminate\Http\JsonResponse error(array<string, string>|string $errors, int $code = 400)
  */
 final class ApiResponseFacade extends Facade
 {

@@ -32,11 +32,14 @@ final class RoutesHelper
         return __DIR__.'/../../routes';
     }
 
+    /**
+     * @return array<int, string>
+     */
     private static function getRoutingArray(): array
     {
         return [
             ...array_map(
-                callback: fn (string $filename) => self::V1_ROUTING_FOLDER.'/'.$filename,
+                callback: fn (string $filename): string => self::V1_ROUTING_FOLDER.'/'.$filename,
                 array: self::V1_ROUTING_FILES),
         ];
     }
