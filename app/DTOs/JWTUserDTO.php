@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace App\DTOs;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use JsonSerializable;
 use PHPStan\BetterReflection\Reflection\Adapter\Exception\NotImplemented;
 
-final readonly class JWTUser implements Authenticatable, JsonSerializable
+final readonly class JWTUserDTO implements Authenticatable, JsonSerializable
 {
     /**
      * @param  array<int, array<int, array{ id: int, name:string }>>  $permissions

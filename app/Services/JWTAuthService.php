@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Models\JWTUser;
+use App\DTOs\JWTUserDTO;
 use Illuminate\Support\Facades\Http;
 
 final readonly class JWTAuthService
@@ -19,7 +19,7 @@ final readonly class JWTAuthService
         $this->baseUrl = $configBaseUrl;
     }
 
-    public function getUserByToken(string $token): ?JWTUser
+    public function getUserByToken(string $token): ?JWTUserDTO
     {
         $response = Http::withHeaders([
             'Authorization' => 'Bearer '.$token,
@@ -35,7 +35,7 @@ final readonly class JWTAuthService
         $data = $response->json();
 
         if ($response->successful()) {
-            return new JWTUser(
+            return new JWTUserDTO(
                 id: $data['id'],
                 name: $data['name'],
                 email: $data['email'],

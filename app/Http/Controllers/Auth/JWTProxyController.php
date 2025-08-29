@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
+use App\DTOs\JWTUserDTO;
 use App\Facades\ApiResponseFacade;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Models\JWTUser;
 use App\Services\JWTAuthService;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\JsonResponse;
@@ -30,7 +30,7 @@ final class JWTProxyController extends Controller
 
         unset($response['success']);
 
-        /** @var (JWTUser&Authenticatable)|null $user */
+        /** @var (JWTUserDTO&Authenticatable)|null $user */
         $user = $jwtAuthService->getUserByToken($response['token']);
 
         if (! $user) {
