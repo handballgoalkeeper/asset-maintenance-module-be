@@ -59,8 +59,8 @@ final class PaginationRequest extends ApiRequest
         /** @var string $perPageRaw */
         $perPageRaw = $data['per_page'];
 
-        $data['page'] = $pageRaw;
-        $data['per_page'] = $perPageRaw;
+        $data['page'] = (int) $pageRaw;
+        $data['per_page'] = (int) $perPageRaw;
 
         return $data;
     }
