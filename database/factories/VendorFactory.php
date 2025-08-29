@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Vendor;
@@ -8,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<Vendor>
  */
-class VendorFactory extends Factory
+final class VendorFactory extends Factory
 {
     /**
      * @return array<string, mixed>
@@ -17,7 +19,7 @@ class VendorFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'email' => $this->faker->email(),
+            'email' => $this->faker->unique()->email(),
             'phone' => $this->faker->phoneNumber(),
             'address' => $this->faker->address(),
             'website' => $this->faker->url(),

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\v1\Auth;
 
 use App\Facades\ApiResponseFacade;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\v1\Auth\LoginRequest;
 use App\Services\JWTAuthService;
 use Illuminate\Http\JsonResponse;
 
-final class JWTProxyController extends Controller
+final readonly class JWTProxyController extends Controller
 {
     public function login(LoginRequest $request, JWTAuthService $jwtAuthService): JsonResponse
     {

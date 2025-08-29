@@ -1,16 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use Illuminate\Http\JsonResponse;
 use InvalidArgumentException;
+use JsonSerializable;
 
 final readonly class ApiResponseService
 {
     /**
-     * @param  array<string, string>  $data
+     * @param JsonSerializable|array<string, string> $data
      */
-    public function success(array $data, int $code = 200): JsonResponse
+    public function success(JsonSerializable|array $data, int $code = 200): JsonResponse
     {
         if ($code > 299 || $code < 200) {
             throw new InvalidArgumentException('Invalid status code');

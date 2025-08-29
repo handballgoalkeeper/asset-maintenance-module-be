@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\Auth\JWTProxyController;
+use App\Http\Controllers\v1\Auth\JWTProxyController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/v1/auth')

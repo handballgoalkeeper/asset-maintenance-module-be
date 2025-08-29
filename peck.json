@@ -5,7 +5,9 @@
             "php",
             "filesystems",
             "favicon",
-            "js"
+            "js",
+            "dt",
+            "dto"
         ],
         "paths": []
     }

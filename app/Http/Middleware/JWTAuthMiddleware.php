@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Middleware;
 
 use App\DTOs\Requests\JWTUserDTO;
@@ -20,7 +22,7 @@ final readonly class JWTAuthMiddleware
     ) {}
 
     /**
-     * @param Closure(Request): (Response) $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
@@ -40,8 +42,7 @@ final readonly class JWTAuthMiddleware
             Auth::setUser($user);
 
             return $next($request);
-        }
-        catch (JWTException) {
+        } catch (JWTException) {
             return ApiResponseFacade::error(
                 errors: 'You are not authorized to make this request.',
                 code: 401

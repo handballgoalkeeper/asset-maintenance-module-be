@@ -10,7 +10,7 @@ final class RoutesHelper
 
     /** @var string[] */
     private const array V1_ROUTING_FILES = [
-        'auth', 'vendors'
+        'auth', 'vendors',
     ];
 
     /** @return array<string> */
@@ -32,11 +32,12 @@ final class RoutesHelper
         return __DIR__.'/../../routes';
     }
 
-    private static function getRoutingArray(): array{
+    private static function getRoutingArray(): array
+    {
         return [
             ...array_map(
-                callback: fn(string $filename) => self::V1_ROUTING_FOLDER. '/' .$filename,
-                array: self::V1_ROUTING_FILES)
+                callback: fn (string $filename) => self::V1_ROUTING_FOLDER.'/'.$filename,
+                array: self::V1_ROUTING_FILES),
         ];
     }
 }
