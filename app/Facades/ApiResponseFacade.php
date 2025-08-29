@@ -4,29 +4,18 @@ declare(strict_types=1);
 
 namespace App\Facades;
 
+use App\Services\ApiResponseService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Facade;
 
-final class ApiResponseFacade
+/**
+ * @method static JsonResponse success(array $data): JsonResponse
+ * @method static JsonResponse error(array|string $errors, int $code): JsonResponse
+ */
+final class ApiResponseFacade extends Facade
 {
-    /**
-     * @param  array<string, string>  $data
-     */
-    public static function success(array $data): JsonResponse
+    protected static function getFacadeAccessor(): string
     {
-        return response()->json(data: [
-            'success' => true,
-            ...$data,
-        ]);
-    }
-
-    /**
-     * @param  array<string, string>  $data
-     */
-    public static function error(array $data, int $code): JsonResponse
-    {
-        return response()->json(data: [
-            'success' => false,
-            ...$data,
-        ], status: $code);
+        return ApiResponseService::class;
     }
 }

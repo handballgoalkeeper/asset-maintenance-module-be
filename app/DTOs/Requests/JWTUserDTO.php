@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\DTOs;
+namespace App\DTOs\Requests;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use JsonSerializable;

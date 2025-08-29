@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\DTOs\JWTUserDTO;
+use App\DTOs\Requests\JWTUserDTO;
 use Illuminate\Support\Facades\Http;
 
 final readonly class JWTAuthService
