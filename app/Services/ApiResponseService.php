@@ -14,7 +14,7 @@ final readonly class ApiResponseService
     /**
      * @template TValue
      *
-     * @param  JsonSerializable|Arrayable<int, TValue>|array<int, TValue>  $data
+     * @param  JsonSerializable|Arrayable<int, TValue>|array<int, TValue>|array<string, string>  $data
      */
     public function success(JsonSerializable|Arrayable|array $data, int $code = 200): JsonResponse
     {

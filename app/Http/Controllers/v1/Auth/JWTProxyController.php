@@ -16,7 +16,7 @@ final readonly class JWTProxyController extends Controller
     {
         /** @var array{ email: string, password: string } $requestData */
         $requestData = $request->validated();
-        /** @var array{success: bool, token: string} $response */
+        /** @var array<string, string> $response */
         $response = $jwtAuthService->login($requestData['email'], $requestData['password']);
 
         if (! $response['success']) {
