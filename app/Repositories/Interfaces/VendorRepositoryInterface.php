@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Interfaces;
 
+use App\Exceptions\DBOperationException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,6 +19,7 @@ interface VendorRepositoryInterface
      *     items: Collection<int, T>,
      *     totalCount: int
      * }
+     * @throws DBOperationException
      */
     public function getPaginated(
         int $page,

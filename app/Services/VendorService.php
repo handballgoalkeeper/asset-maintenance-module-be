@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\DTOs\Internal\VendorDTO;
 use App\DTOs\Responses\PaginatedResponseDTO;
+use App\Exceptions\DBOperationException;
 use App\Mappers\VendorMapper;
 use App\Models\Vendor;
 use App\Repositories\Interfaces\VendorRepositoryInterface;
@@ -27,6 +28,7 @@ final readonly class VendorService implements VendorServiceInterface
     /**
      * @param  array<string, string>  $filters
      * @return PaginatedResponseDTO<VendorDTO>
+     * @throws DBOperationException
      */
     public function getPaginated(
         int $page,
