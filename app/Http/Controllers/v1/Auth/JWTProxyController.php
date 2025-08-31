@@ -27,6 +27,14 @@ final readonly class JWTProxyController extends Controller
 
         unset($response['success']);
 
-        return ApiResponseFacade::success(data: $response);
+        $token = $response['token'];
+
+        $user = $jwtAuthService->getUserByToken(token: $token);
+
+        if (! $user) {
+            return ApiResponseFacade::error(errors: 'Something went wrong while fetching user data.', code: 500);
+        }
+
+        return ApiResponseFacade::success(data: [...$user->jsonSerialize(), 'token' => $token]);
     }
 }
