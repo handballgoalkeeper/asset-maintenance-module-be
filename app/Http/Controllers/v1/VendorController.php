@@ -42,8 +42,7 @@ final readonly class VendorController extends Controller
                 sortDirection: $paginationRequestData['sort_direction'],
                 filters: $paginationRequestData['filters'],
             );
-        }
-        catch (DBOperationException $e) {
+        } catch (DBOperationException $e) {
             return ApiResponseFacade::error(errors: $e->getMessage(), code: $e->getStatusCode());
         }
 

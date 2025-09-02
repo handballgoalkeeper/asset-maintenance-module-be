@@ -17,11 +17,12 @@ use Throwable;
 final class VendorRepository implements VendorRepositoryInterface
 {
     /**
-     * @param array<string, string> $filters
+     * @param  array<string, string>  $filters
      * @return array{
      *     items: Collection<int, Vendor>,
      *     totalCount: int
      * }
+     *
      * @throws DBOperationException
      */
     public function getPaginated(int $page, int $perPage, string $sortBy, string $sortDirection, array $filters): array
@@ -42,8 +43,7 @@ final class VendorRepository implements VendorRepositoryInterface
                 ->skip($offset)
                 ->take($perPage)
                 ->get();
-        }
-        catch (Throwable) {
+        } catch (Throwable) {
             throw new DBOperationException(message: DBOperationsExceptionError::FETCHING_DATA_EXCEPTION->value);
         }
 

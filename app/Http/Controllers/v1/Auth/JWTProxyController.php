@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\v1\Auth;
 
+use App\DTOs\Requests\JWTUserDTO;
 use App\Facades\ApiResponseFacade;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\Auth\LoginRequest;
@@ -31,7 +32,7 @@ final readonly class JWTProxyController extends Controller
 
         $user = $jwtAuthService->getUserByToken(token: $token);
 
-        if (! $user) {
+        if (! $user instanceof JWTUserDTO) {
             return ApiResponseFacade::error(errors: 'Something went wrong while fetching user data.', code: 500);
         }
 

@@ -15,6 +15,7 @@ interface VendorServiceInterface
     /**
      * @param  array<string, string>  $filters
      * @return PaginatedResponseDTO<T>
+     *
      * @throws DBOperationException
      */
     public function getPaginated(

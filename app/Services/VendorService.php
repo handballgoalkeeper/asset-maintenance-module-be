@@ -28,6 +28,7 @@ final readonly class VendorService implements VendorServiceInterface
     /**
      * @param  array<string, string>  $filters
      * @return PaginatedResponseDTO<VendorDTO>
+     *
      * @throws DBOperationException
      */
     public function getPaginated(

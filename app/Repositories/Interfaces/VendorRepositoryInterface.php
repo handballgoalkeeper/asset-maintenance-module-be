@@ -19,6 +19,7 @@ interface VendorRepositoryInterface
      *     items: Collection<int, T>,
      *     totalCount: int
      * }
+     *
      * @throws DBOperationException
      */
     public function getPaginated(
